@@ -10,7 +10,7 @@
 </head>
 <body>
     <header id="header" class="container text-center">
-        <h1>Weather Outlook</h1>
+        <h1 class="mb-3 p-2">Weather Outlook</h1>
     </header>
     <div class="container">
         <div class="row">
@@ -20,40 +20,40 @@
                     <input type="text" class="form-control my-2" id="floatingText" placeholder="City Name">
                     <label for="floatingPassword">City Name</label>
                 </div>
-                <button type="button" class="btn btn-primary w-100 my-2">Search</button>
+                <button type="button" id="search-btn" class="btn btn-primary w-100 my-2">Search</button>
                 <div class="border border-dark-subtle my-2"></div>
                 <div id="recent-search"></div>
             </div>
             <div class="col-8">
             <div class="row">
-                <div id="current-day" class="border border-black">
-                    <h2 id="current-city">Lorem ipsum</h2>
+                <div class="border border-black py-2 mb-3">
+                    <h2 class="current-info">
+                        <span id="current-city">Lorem Ipsum</span>
+                        <span id="current-day">(4/17/2023)</span>
+                    </h2>
                     <table>
                         <tbody>
-                            <tr>
-                                <td>Temp:</td>
-                                <td>69</td>
+                            <tr id="current-temp">
+                                <td>Temp: 69</td>
                             </tr>
-                            <tr>
-                                <td>Temp:</td>
-                                <td>69</td>
+                            <tr id="current-wind">
+                                <td>Wind: 69 MPH</td>
                             </tr>
-                            <tr>
-                                <td>Temp:</td>
-                                <td>69</td>
+                            <tr id="current-humidity">
+                                <td>Humidity: 69%</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="row">
-                <h3>5-Day Forecast:</h3>
-                <div class="row">
-                    <div id="second-day" class="col-2"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
-                    <div id="third-day" class="col-2"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
-                    <div id="fourth-day" class="col-2"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
-                    <div id="fith-day" class="col-2"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
-                    <div id="sixth-day" class="col-2"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
+                <h4 class="p-0">5-Day Forecast:</h4>
+                <div class="row d-flex justify-content-between">
+                    <div id="second-day" class="col-2 bg-primary-subtle p-1"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
+                    <div id="third-day" class="col-2 bg-primary-subtle p-1"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
+                    <div id="fourth-day" class="col-2 bg-primary-subtle p-1"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
+                    <div id="fith-day" class="col-2 bg-primary-subtle p-1"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
+                    <div id="sixth-day" class="col-2 bg-primary-subtle p-1"><h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, sit!</h5></div>
                 </div>
             </div>
         </div>
