@@ -1,17 +1,18 @@
 const cityName = document.getElementById('floatingText');
 const searchBtn = document.getElementById('search-btn');
+const clearBtn = document.getElementById('clear-btn');
 const recentSearch = document.getElementById('recent-search');
 
 function saveSearch(event) {
   event.preventDefault();
-  // Get the existing saved cities from local storage
+  // * Get the existing saved cities from local storage
   const savedCities = localStorage.getItem('recentCities');
   // If there are no saved cities, create a new empty array
   let recentCities = [];
   if (savedCities) {
     recentCities = JSON.parse(savedCities);
   }
-  // Check if the current city is already in the array
+  // * Check if the current city is already in the array
   if (!recentCities.includes(cityName.value)) {
     // Add the current city to the array
     recentCities.push(cityName.value);
@@ -25,15 +26,15 @@ function saveSearch(event) {
 }
 
 function displayRecentSearches() {
-  // Clear the recentSearch element
+  // * Clear the recentSearch element
   recentSearch.innerHTML = '';
-  // Get the saved cities from the local storage
+  // * Get the saved cities from the local storage
   const savedCities = localStorage.getItem('recentCities');
-  // If there are no saved cities, do nothing
+  // * If there are no saved cities, do nothing
   if (!savedCities) {
     return;
   }
-  // Otherwise, parse the saved cities string into an array and create a button for each city
+  // * Otherwise, parse the saved cities string into an array and create a button for each city
   const recentCities = JSON.parse(savedCities);
   recentCities.forEach(city => {
     const recentCity = document.createElement('button');
@@ -42,6 +43,13 @@ function displayRecentSearches() {
   });
 }
 
-searchBtn.addEventListener('click', saveSearch);
+function clearSearchHistory() {
+    // * Remove the recent search buttons from the recent search container
+    recentSearch.innerHTML = '';
+    // * Clear the "recentCities" key from localStorage
+    localStorage.removeItem('recentCities');
+  }
+  
 displayRecentSearches();
-
+searchBtn.addEventListener('click', saveSearch);
+clearBtn.addEventListener('click', clearSearchHistory);
