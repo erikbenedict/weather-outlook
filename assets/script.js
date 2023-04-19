@@ -21,7 +21,10 @@ function saveSearch(event) {
     // Create a button for the current city and add it to the recentSearch element
     const recentCity = document.createElement('button');
     recentCity.textContent = cityName.value;
+    recentCity.classList.add('btn', 'btn-secondary', 'd-block', 'w-100', 'my-3');
     recentSearch.appendChild(recentCity);
+    // * Clear the input field
+    cityName.value = "";
   }
 }
 
@@ -39,6 +42,7 @@ function displayRecentSearches() {
   recentCities.forEach(city => {
     const recentCity = document.createElement('button');
     recentCity.textContent = city;
+    recentCity.classList.add('btn', 'btn-secondary', 'd-block', 'w-100', 'my-3');
     recentSearch.appendChild(recentCity);
   });
 }
@@ -46,7 +50,7 @@ function displayRecentSearches() {
 function clearSearchHistory() {
     // * Remove the recent search buttons from the recent search container
     recentSearch.innerHTML = '';
-    // * Clear the "recentCities" key from localStorage
+    // * Clear the "recentCities" key from local storage
     localStorage.removeItem('recentCities');
   }
   
