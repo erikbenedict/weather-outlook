@@ -24,5 +24,24 @@ function saveSearch(event) {
   }
 }
 
+function displayRecentSearches() {
+  // Clear the recentSearch element
+  recentSearch.innerHTML = '';
+  // Get the saved cities from the local storage
+  const savedCities = localStorage.getItem('recentCities');
+  // If there are no saved cities, do nothing
+  if (!savedCities) {
+    return;
+  }
+  // Otherwise, parse the saved cities string into an array and create a button for each city
+  const recentCities = JSON.parse(savedCities);
+  recentCities.forEach(city => {
+    const recentCity = document.createElement('button');
+    recentCity.textContent = city;
+    recentSearch.appendChild(recentCity);
+  });
+}
+
 searchBtn.addEventListener('click', saveSearch);
+displayRecentSearches();
 
