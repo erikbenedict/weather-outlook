@@ -54,29 +54,47 @@ function currentWeather(lat, lon) {
 
   let name = document.createElement('h2');
   name.textContent = data.name;
-  currentDay.append(name);
-
   let date = document.createElement('h2');
-  date.textContent = moment.unix(data.dt).format('MMM, DD, YYYY');
-  currentDay.append(date);
-
+  date.textContent = '(' + moment.unix(data.dt).format('MM/DD/YYYY') +')';
   let icon = document.createElement('img');
   icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
   // TODO: >>>>> STYLE >>>>>
   icon.setAttribute('class', 'icon-size')
-  currentDay.append(icon);
-  
   let temp = document.createElement('p');
   temp.textContent = 'Temp: ' + data.main.temp +'°F';
-  currentDay.append(temp);
-
   let wind = document.createElement('p');
-  wind.textContent = 'Wind: ' + data.wind.speed + 'MPH';
-  currentDay.append(wind);
-
+  wind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
   let humidity = document.createElement('p');
-  humidity.textContent = 'Humidity' + data.main.humidity + '%';
-  currentDay.append(humidity);
+  humidity.textContent = 'Humidity: ' + data.main.humidity + '%';
+  currentDay.append(name, date, icon, temp, wind, humidity);
+  })
+}
+
+// !!!! FORECAST !!!!!
+// * Calling all required data for 5 day forecast and displaying in forecastContainer
+function forecast(lat, lon) {
+  fetch (`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`)
+  .then(response => response.json())
+  .then (data => {
+  // * Loop through forecast data to request the data from 12:00pm each day for 5 days
+  for (let i = 4; i < data.list.length; i = i+8) {
+    let forecastCard = document.createElement('div');
+    forecastCard.setAttribute('class', 'col-2 bg-primary-subtle p-1')
+    let date = document.createElement('h4');
+    date.textContent = moment.unix(data.list[i].dt).format('MM/DD/YYYY');
+    let icon = document.createElement('img');
+    icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`);
+  // TODO: >>>>> STYLE >>>>>
+  icon.setAttribute('class', 'icon-size')
+    let temp = document.createElement('p');
+    temp.textContent= 'Temp: ' + data.list[i].main.temp +'°F';
+    let wind = document.createElement('p');
+    wind.textContent = 'Wind: ' + data.list[i].wind.speed + ' MPH';
+    let humidity = document.createElement('p');
+    humidity.textContent = 'Humidity: ' + data.list[i].main.humidity + '%';
+    forecastCard.append(date, icon, temp, wind, humidity);
+    forecastContainer.append(forecastCard);
+  }
   })
 }
 
