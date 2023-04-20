@@ -66,9 +66,17 @@ function currentWeather(lat, lon) {
   icon.setAttribute('class', 'icon-size')
   currentDay.append(icon);
   
-  let temp = document.createElement('h3');
+  let temp = document.createElement('p');
   temp.textContent = 'Temp: ' + data.main.temp +'°F';
   currentDay.append(temp);
+
+  let wind = document.createElement('p');
+  wind.textContent = 'Wind: ' + data.wind.speed + 'MPH';
+  currentDay.append(wind);
+
+  let humidity = document.createElement('p');
+  humidity.textContent = 'Humidity' + data.main.humidity + '%';
+  currentDay.append(humidity);
   })
 }
 
