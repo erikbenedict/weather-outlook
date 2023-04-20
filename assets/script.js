@@ -9,9 +9,7 @@ const forecastContainer = document.querySelector('.forecast-container')
 
 // TODO: fix invalid city search from creating button and display error message to user that city is invalid
 
-// TODO: Make search history buttons display city's weather
-
-function saveSearch(event) {
+const saveSearch = (event) => {
   event.preventDefault();
   // * Get the existing saved cities from local storage
   const savedCities = localStorage.getItem('recentCities');
@@ -20,7 +18,7 @@ function saveSearch(event) {
   if (savedCities) {
     recentCities = JSON.parse(savedCities);
   }
-  // * Check if the current city is already in the array
+  // * Check if text input is empty and if the current city is already in the array
   if (cityName.value.trim() !== '' && !recentCities.includes(cityName.value)) {
     geocode(cityName.value);
     // * Add the new current city to the array
@@ -32,6 +30,10 @@ function saveSearch(event) {
     recentCity.textContent = cityName.value;
     recentCity.classList.add('btn', 'btn-secondary', 'd-block', 'w-100', 'my-3');
     recentSearch.appendChild(recentCity);
+    // * Add an event listener to the recent city button to fetch weather data for that city
+    recentCity.addEventListener('click', () => {
+      geocode(recentCity.textContent);
+    });
     // * Clear the input field
     cityName.value = "";
   } 
@@ -45,6 +47,7 @@ function geocode(searchValue) {
     currentWeather(data[0].lat, data[0].lon);
     forecast(data[0].lat, data[0].lon);
   })
+  // * Logs error if invalid city name is entered
   .catch((error) => {
     console.error('Error:', error);
   });
@@ -62,7 +65,7 @@ function currentWeather(lat, lon) {
   let name = document.createElement('h2');
   name.textContent = data.name;
   let date = document.createElement('h2');
-  date.textContent = '(' + moment.unix(data.dt).format('MM/DD/YYYY') +')';
+  date.textContent = '(' + new Date(data.dt * 1000).toLocaleDateString() + ')';
   let icon = document.createElement('img');
   icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
   // TODO: >>>>> STYLE >>>>>
@@ -78,7 +81,7 @@ function currentWeather(lat, lon) {
 }
 
 // * Calling all required data for 5 day forecast and displaying in forecastContainer
-function forecast(lat, lon) {
+const forecast = (lat, lon) => {
   fetch (`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`)
   .then(response => response.json())
   .then (data => {
@@ -89,7 +92,7 @@ function forecast(lat, lon) {
     let forecastCard = document.createElement('div');
     forecastCard.setAttribute('class', 'col-2 bg-primary-subtle p-1')
     let date = document.createElement('h4');
-    date.textContent = moment.unix(data.list[i].dt).format('MM/DD/YYYY');
+    date.textContent = new Date(data.list[i].dt * 1000).toLocaleDateString();
     let icon = document.createElement('img');
     icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`);
   // TODO: >>>>> STYLE >>>>>
@@ -106,7 +109,7 @@ function forecast(lat, lon) {
   })
 }
 
-function displayRecentSearches() {
+const displayRecentSearches = () => {
   // * Clear the recentSearch element
   recentSearch.innerHTML = '';
   // * Get the saved cities from the local storage
@@ -122,9 +125,13 @@ function displayRecentSearches() {
     recentCity.textContent = city;
     recentCity.classList.add('btn', 'btn-secondary', 'd-block', 'w-100', 'my-3');
     recentSearch.appendChild(recentCity);
+    // * Add an event listener to the recent city button to fetch weather data for that city
+    recentCity.addEventListener('click', () => {
+      geocode(recentCity.textContent);
+    });
   });
 }
-function clearSearchHistory() {
+const clearSearchHistory = () => {
     // * Remove the recent search buttons from the recent search container
     recentSearch.innerHTML = '';
     // * Clear the "recentCities" key from local storage
@@ -132,7 +139,7 @@ function clearSearchHistory() {
   }
 
 //  * Event listeners and called functions
-cityName.addEventListener('keyup', function(event) {
+cityName.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
     saveSearch(event);
   }
