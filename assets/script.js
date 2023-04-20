@@ -6,8 +6,7 @@ const recentSearch = document.getElementById('recent-search');
 const currentDay = document.getElementById('current-day');
 const forecastContainer = document.querySelector('.forecast-container')
 
-
-// TODO: fix invalid city search from creating button and display error message to user that city is invalid
+// TODO: remove attribute hidden from current-day & 5-day forecast
 
 const saveSearch = (event) => {
   event.preventDefault();
@@ -20,32 +19,41 @@ const saveSearch = (event) => {
   }
   // * Check if text input is empty and if the current city is already in the array
   if (cityName.value.trim() !== '' && !recentCities.includes(cityName.value)) {
-    geocode(cityName.value);
-    // * Add the new current city to the array
-    recentCities.push(cityName.value);
-    // * stringify array and store it in local storage
-    localStorage.setItem('recentCities', JSON.stringify(recentCities));
-    // * Create a button for the current city and add it to the recentSearch element
-    const recentCity = document.createElement('button');
-    recentCity.textContent = cityName.value;
-    recentCity.classList.add('btn', 'btn-secondary', 'd-block', 'w-100', 'my-3');
-    recentSearch.appendChild(recentCity);
-    // * Add an event listener to the recent city button to fetch weather data for that city
-    recentCity.addEventListener('click', () => {
-      geocode(recentCity.textContent);
-    });
-    // * Clear the input field
-    cityName.value = "";
+    
+    geocode(cityName.value).then (
+      response => {
+        if (!response) {
+          // TODO: Call modal?
+          alert('no city');
+        } else {
+        // * Add the new current city to the array
+        recentCities.push(cityName.value);
+        // * stringify array and store it in local storage
+        localStorage.setItem('recentCities', JSON.stringify(recentCities));
+        // * Create a button for the current city and add it to the recentSearch element
+        const recentCity = document.createElement('button');
+        recentCity.textContent = cityName.value;
+        recentCity.classList.add('btn', 'btn-secondary', 'd-block', 'w-100', 'my-3');
+        recentSearch.appendChild(recentCity);
+        // * Add an event listener to the recent city button to fetch weather data for that city
+        recentCity.addEventListener('click', () => {
+          geocode(recentCity.textContent);
+        });
+        // * Clear the input field
+        cityName.value = "";}
+      }
+    )
   } 
 }
 
 // * Get lat & lon from searched city
 function geocode(searchValue) {
-  fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${searchValue}&limit=5&appid=${APIKey}`)
+  return fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${searchValue}&limit=5&appid=${APIKey}`)
   .then(response => response.json())
   .then (data => {
     currentWeather(data[0].lat, data[0].lon);
     forecast(data[0].lat, data[0].lon);
+    return data;
   })
   // * Logs error if invalid city name is entered
   .catch((error) => {
