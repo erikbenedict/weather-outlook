@@ -7,7 +7,10 @@ const currentDay = document.getElementById('current-day');
 const forecastContainer = document.querySelector('.forecast-container')
 
 
-// TODO: fix empty string bug
+// TODO: fix invalid city search from creating button and display error message to user that city is invalid
+
+// TODO: Make search history buttons display city's weather
+
 function saveSearch(event) {
   event.preventDefault();
   // * Get the existing saved cities from local storage
@@ -17,9 +20,8 @@ function saveSearch(event) {
   if (savedCities) {
     recentCities = JSON.parse(savedCities);
   }
-  
   // * Check if the current city is already in the array
-  if (!recentCities.includes(cityName.value)) {
+  if (cityName.value.trim() !== '' && !recentCities.includes(cityName.value)) {
     geocode(cityName.value);
     // * Add the new current city to the array
     recentCities.push(cityName.value);
@@ -43,6 +45,9 @@ function geocode(searchValue) {
     currentWeather(data[0].lat, data[0].lon);
     forecast(data[0].lat, data[0].lon);
   })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 }
 
 // * Calling all requested CURRENT day data to display in currentDay element
@@ -51,7 +56,9 @@ function currentWeather(lat, lon) {
   .then(response => response.json())
   .then (data => {
     console.log(data);
-
+  // * Clear previous weather data
+  currentDay.innerHTML = '';
+  // * Create new weather data elements
   let name = document.createElement('h2');
   name.textContent = data.name;
   let date = document.createElement('h2');
@@ -70,12 +77,13 @@ function currentWeather(lat, lon) {
   })
 }
 
-// !!!! FORECAST !!!!!
 // * Calling all required data for 5 day forecast and displaying in forecastContainer
 function forecast(lat, lon) {
   fetch (`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`)
   .then(response => response.json())
   .then (data => {
+  // * Clear previous weather data
+  forecastContainer.innerHTML = '';
   // * Loop through forecast data to request the data from 12:00pm each day for 5 days
   for (let i = 4; i < data.list.length; i = i+8) {
     let forecastCard = document.createElement('div');
