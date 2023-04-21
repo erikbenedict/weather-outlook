@@ -4,10 +4,11 @@ const searchBtn = document.getElementById('search-btn');
 const clearBtn = document.getElementById('clear-btn');
 const recentSearch = document.getElementById('recent-search');
 const currentDay = document.getElementById('current-day');
+const currentContainer = document.getElementById('current-container');
 const forecastContainer = document.querySelector('.forecast-container')
+const forecastTitle = document.getElementById('forecast-title');
 
-// TODO: remove attribute hidden from current-day & 5-day forecast
-
+// * Function for searchBtn event listener
 const saveSearch = (event) => {
   event.preventDefault();
   // * Get the existing saved cities from local storage
@@ -41,13 +42,15 @@ const saveSearch = (event) => {
         });
         // * Clear the input field
         cityName.value = "";}
+        // * Remove hidden attribute from currentContainer && forecastTitle
+        currentContainer.removeAttribute('hidden');
+        forecastTitle.removeAttribute('hidden');
       }
     )
   } 
 }
-
 // * Get lat & lon from searched city
-function geocode(searchValue) {
+const geocode = (searchValue) => {
   return fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${searchValue}&limit=5&appid=${APIKey}`)
   .then(response => response.json())
   .then (data => {
@@ -62,11 +65,10 @@ function geocode(searchValue) {
 }
 
 // * Calling all requested CURRENT day data to display in currentDay element
-function currentWeather(lat, lon) {
+const currentWeather = (lat, lon) => {
   fetch (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`)
   .then(response => response.json())
   .then (data => {
-    console.log(data);
   // * Clear previous weather data
   currentDay.innerHTML = '';
   // * Create new weather data elements
@@ -136,6 +138,9 @@ const displayRecentSearches = () => {
     // * Add an event listener to the recent city button to fetch weather data for that city
     recentCity.addEventListener('click', () => {
       geocode(recentCity.textContent);
+      // * Remove hidden attribute from currentContainer && forecastTitle
+      currentContainer.removeAttribute('hidden');
+      forecastTitle.removeAttribute('hidden');
     });
   });
 }
