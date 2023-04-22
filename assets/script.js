@@ -77,7 +77,6 @@ const currentWeather = (lat, lon) => {
   date.textContent = '(' + new Date(data.dt * 1000).toLocaleDateString() + ')';
   let icon = document.createElement('img');
   icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
-  // TODO: >>>>> STYLE >>>>>
   icon.setAttribute('class', 'icon-size')
   let temp = document.createElement('p');
   temp.textContent = 'Temp: ' + data.main.temp +'°F';
@@ -99,13 +98,12 @@ const forecast = (lat, lon) => {
   // * Loop through forecast data to request the data from 12:00pm each day for 5 days
   for (let i = 4; i < data.list.length; i = i+8) {
     let forecastCard = document.createElement('div');
-    forecastCard.setAttribute('class', 'col-2 bg-primary-subtle p-1')
+    forecastCard.setAttribute('class', 'col-12 col-md-6 col-lg-3 col-xl-2 bg-primary-subtle p-1 mb-2 ms-2')
     let date = document.createElement('h4');
     date.textContent = new Date(data.list[i].dt * 1000).toLocaleDateString();
     let icon = document.createElement('img');
     icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`);
-  // TODO: >>>>> STYLE >>>>>
-  icon.setAttribute('class', 'icon-size')
+    icon.setAttribute('class', 'icon-size')
     let temp = document.createElement('p');
     temp.textContent= 'Temp: ' + data.list[i].main.temp +'°F';
     let wind = document.createElement('p');

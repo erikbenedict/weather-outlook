@@ -14,7 +14,7 @@
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <h2 class="mb-2">Search for a City:</h2>
                 <div class="form-floating">
                     <input type="text" class="form-control my-2" id="floatingText" placeholder="City Name">
@@ -25,15 +25,15 @@
                 <div id="recent-search" class="w-100 my-2"></div>
                 <button type="button" id="clear-btn" class="btn btn-danger w-100 my-2">Clear Search History</button>
             </div>
-            <div class="col-8">
-            <div class="row">
-                <div class="border border-black py-2 mb-3" id="current-container" hidden>
+            <div class="col-12 col-md-6 col-lg-8">
+            <div class="row col-12">
+                <div class=" border border-black py-2 mb-3 mx-2" id="current-container" hidden>
                     <div id="current-day"></div>
                 </div>
             </div>
-            <div class="row">
-                <h4 class="p-0" id="forecast-title" hidden>5-Day Forecast:</h4>
-                <div class="row d-flex justify-content-between forecast-container"></div>
+            <div class="row col-12">
+                <h4 class="p-0 ms-2" id="forecast-title" hidden>5-Day Forecast:</h4>
+                <div class="row d-flex forecast-container"></div>
             </div>
         </div>
         </div>
