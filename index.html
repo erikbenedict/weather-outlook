@@ -22,23 +22,18 @@
                 </div>
                 <button type="button" id="search-btn" class="btn btn-primary w-100 my-2">Search</button>
                 <div class="border border-dark-subtle my-2"></div>
-                <div id="recent-search"></div>
+                <div id="recent-search" class="w-100 my-2"></div>
+                <button type="button" id="clear-btn" class="btn btn-danger w-100 my-2">Clear Search History</button>
             </div>
             <div class="col-8">
             <div class="row">
-                <div class="border border-black py-2 mb-3">
+                <div class="border border-black py-2 mb-3" id="current-container" hidden>
                     <div id="current-day"></div>
                 </div>
             </div>
             <div class="row">
-                <h4 class="p-0">5-Day Forecast:</h4>
-                <div class="row d-flex justify-content-between">
-                    <div id="second-day" class="col-2 bg-primary-subtle p-1"></div>
-                    <div id="third-day" class="col-2 bg-primary-subtle p-1"></div>
-                    <div id="fourth-day" class="col-2 bg-primary-subtle p-1"></div>
-                    <div id="fith-day" class="col-2 bg-primary-subtle p-1"></div>
-                    <div id="sixth-day" class="col-2 bg-primary-subtle p-1"></div>
-                </div>
+                <h4 class="p-0" id="forecast-title" hidden>5-Day Forecast:</h4>
+                <div class="row d-flex justify-content-between forecast-container"></div>
             </div>
         </div>
         </div>
