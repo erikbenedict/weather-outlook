@@ -20,12 +20,11 @@ const saveSearch = (event) => {
   }
   // * Check if text input is empty and if the current city is already in the array
   if (cityName.value.trim() !== '' && !recentCities.includes(cityName.value)) {
-    
     geocode(cityName.value).then (
       response => {
         if (!response) {
-          // TODO: Call modal?
-          alert('no city');
+          // TODO: >>>>> Try to use a modal here >>>>>
+          alert('Please enter a valid city name');
         } else {
         // * Add the new current city to the array
         recentCities.push(cityName.value);
