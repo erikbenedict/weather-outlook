@@ -23,7 +23,6 @@ const saveSearch = (event) => {
     geocode(cityName.value).then (
       response => {
         if (!response) {
-          // TODO: >>>>> Try to use a modal here >>>>>
           alert('Please enter a valid city name');
         } else {
         // * Add the new current city to the array
