@@ -23,7 +23,6 @@ const saveSearch = (event) => {
     geocode(cityName.value).then (
       response => {
         if (!response) {
-          // TODO: >>>>> Try to use a modal here >>>>>
           alert('Please enter a valid city name');
         } else {
         // * Add the new current city to the array
@@ -89,7 +88,6 @@ const currentWeather = (lat, lon) => {
 }
 
 // * Calling all required data for 5 day forecast and displaying in forecastContainer
-// TODO: In bug/forecast branch, use One Call API 16 day forecast and set cnt=5 to get 5 day forecast once authorized
 const forecast = (lat, lon) => {
   fetch (`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`)
   .then(response => response.json())
