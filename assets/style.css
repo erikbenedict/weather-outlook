@@ -1,0 +1,43 @@
+:root {
+    --header-dark : #2b235a;
+    --background-dark: #2c313e;
+    --background-medium: #6272a0;
+    --background-light: #75b4e3;
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.25rem;
+}
+
+/* * Header section * */
+#header {
+    color: white;
+    background-color: var(--background-dark);
+    background: radial-gradient(circle, var(--background-dark) 0%, var(--background-medium) 100%);
+}
+
+/* * Search section */
+.search-container {
+    background-color: var(--background-dark);
+    background: linear-gradient(180deg, var(--background-dark) 0%, var(--background-medium) 70%, var(--background-light) 100%);
+}
+.search-container h2 {
+    color: white;
+}
+
+/* * Form input * */
+.custom-form {
+    font-size: 1rem;
+}
+
+/* * Div for current day information * */
+#current-container {
+    background-color: var(--background-dark);
+    background: linear-gradient(270deg, var(--background-dark) 0%, #6272a0 40%, #75b4e3 100%);
+}
+
+/* * 5-day forecast cards * */
+.custom-card {
+    background-color: #2c313e;
+}
