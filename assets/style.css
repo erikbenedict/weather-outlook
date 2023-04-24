@@ -17,11 +17,12 @@ body {
     background: radial-gradient(circle, var(--background-dark) 0%, var(--background-medium) 100%);
 }
 
-.custom-search {
+/* * Search section */
+.search-container {
     background-color: var(--background-dark);
     background: linear-gradient(180deg, var(--background-dark) 0%, var(--background-medium) 70%, var(--background-light) 100%);
 }
-.custom-search h2 {
+.search-container h2 {
     color: white;
 }
 
