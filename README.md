@@ -2,7 +2,7 @@
 
 ## Description
 
-If you are a traveler, or just like to be prepared for what mother nature might throw your way, then this weather application is great for you! You can use this app to search for any major city's weather. It will display the current weather, along with a 5-day forecast. This will include the dates, an icon representation of weather conditions, the temperature, the wind speed, and the humidity. 
+You can use this app to search for any major city's weather. It will display the current weather, along with a 5-day forecast. This will include the dates, an icon representation of weather conditions, the temperature, the wind speed, and the humidity. This was built using the OpenWeather.org API, Bootstrap, and vanilla JavaScript.
 
 Below are instructions on how to get started!
 
@@ -15,3 +15,11 @@ Below are instructions on how to get started!
 4. If you want to see a previously searched city's weather information, click on the button with the name of the city you want to see.
 5. If you wish to clear your search history, just use the 'Clear Search History' button at the bottom of the saved searches. This will delete all previously searched cities, and give you a clean slate to work with.
 
+## Motivation
+
+Here is a list of my motivations for this project!
+
+- Learn how to fetch an API, and use query parameters navigate the API per the docs to get desired data
+- Practice proper function usage for specific tasks that were new to me 
+- Continue building habits using console.log to help me troubleshoot bugs, and to help navigate the OpenWeather API
+- Creating an application from scratch, and using Bootstrap for layout and design
