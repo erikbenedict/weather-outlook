@@ -12,3 +12,8 @@ body {
     background-color: var(--background);
     background: radial-gradient(circle, var(--background) 0%, #2d1e83 50%, #496dac 100%);
 }
+
+#current-container {
+    background-color: var(--background);
+    background: linear-gradient(270deg, var(--background) 0%, #6272a0 40%, #75b4e3 100%);
+}
