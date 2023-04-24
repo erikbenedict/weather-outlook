@@ -7,13 +7,25 @@ body {
     font-size: 1.25rem;
 }
 
+/* * Header section * */
 #header {
     color: white;
     background-color: var(--background);
     background: radial-gradient(circle, var(--background) 0%, #2d1e83 50%, #496dac 100%);
 }
 
+/* * Form input * */
+.custom-form {
+    font-size: 1rem;
+}
+
+/* * Div for current day information * */
 #current-container {
     background-color: var(--background);
     background: linear-gradient(270deg, var(--background) 0%, #6272a0 40%, #75b4e3 100%);
+}
+
+/* * 5-day forecast cards * */
+.custom-card {
+    background-color: #2c313e;
 }
