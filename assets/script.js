@@ -49,7 +49,7 @@ const saveSearch = (event) => {
 }
 // * Get lat & lon from searched city
 const geocode = (searchValue) => {
-  return fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${searchValue}&limit=5&appid=${APIKey}`)
+  return fetch (`https://api.openweathermap.org/geo/1.0/direct?q=${searchValue}&limit=5&appid=${APIKey}`)
   .then(response => response.json())
   .then (data => {
     currentWeather(data[0].lat, data[0].lon);
